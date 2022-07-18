@@ -1,0 +1,418 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>회원가입</title>
+
+<!-- CSS 단 -->
+<style type="text/css">
+    body {
+        background-color: antiquewhite;
+    }
+
+</style>
+
+<!-- 스크립트 단 -->
+<script type="text/javascript">
+
+    // 회원가입 페이지 유효성 검사 추가(모듈화)
+    // 1. 아이디   : 빈값
+    // 2. 이름     : 빈값
+    // 3. 주민번호 : 빈값, 정규식
+    // 4. 전화번호 : 빈값, 정규식
+    // 5. 비밀번호, 비밀번화 확인 - 빈값, 동일여부
+    // 6. 주소(우편번호, 주소, 주소상세) - 빈값
+    // 7. 약관동의 - 체크여부
+
+
+    // 아이디 검사 - 빈 값
+    function checkId()
+    {
+        var idObj = document.getElementById("id");
+        //alert(idObj.value);
+
+        if (idObj.value != null && idObj.value.trim() != "")
+        {
+            return true;
+        }
+        alert("아이디을 입력해야합니다.");
+
+        return false;
+    }
+
+    // 이름 검사 - 빈 값
+    function checkName()
+    {
+        var nameObj = document.getElementById("name");
+        //alert(nameObj.value);
+
+        if (nameObj.value != null && nameObj.value.trim() != "")
+        {
+            return true;
+        }
+        alert("이름을 입력해야합니다.");
+        return false;
+    }
+
+    function standardSsn(ssn)
+    {
+        var k = /^(?:[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1,2][0-9]|3[0,1]))-[1-8][0-9]{6}$/;
+
+        if (!k.test(ssn))
+        {
+            alert("주민등록번호 형식에 맞게 입력하세요");
+            return false;
+        }
+
+        return true;
+
+    }
+    // 주민번호 검사 - 빈 값, 정규식
+    function checkSsn()
+    {
+        var ssnObj = document.getElementById("ssn");
+
+        // 주민번호가 없다면
+        if (ssnObj.value.trim() == "")
+        {
+            alert("주민번호를 입력하세요");
+            return false;
+        }
+
+        var ssnCheck = standardSsn(ssnObj.value);
+
+        if (ssnCheck)
+        {
+            return true;
+        }
+
+
+
+        // 주민번호가 정규식에 일치하지 않는다면
+
+
+
+        return false;
+    }
+
+    // 전화번호 정규식 함수
+    function standardTel(tel)
+    {
+        var telCheck = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+
+        // 정규식에 일치할 경우
+        if (telCheck.test(tel) == true)
+        {
+            return true;
+        }
+
+        // 정규식에 일치하지 않을 경우
+        alert("올바른 전화번호 형식이 아닙니다.");
+        return false;
+    }
+
+    // 전화번호 검사 - 빈 값, 정규식
+    function checkTel()
+    {
+        var telObj = document.getElementById("tel");
+
+        // 전화번호가 없다면
+        if (telObj.value.trim() == "")
+        {
+            alert("전화번호를 입력하세요");
+            return false;
+        }
+
+        var telCheck = standardTel(telObj.value);
+
+        if(telCheck == true)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    // 비밀번호, 비밀번호 확인 검사 - 빈 값, 동일여부
+    function checkPwd()
+    {
+        var pwdObj = document.getElementById("pwd");
+        var pwd2Obj = document.getElementById("pwd2");
+
+        // 둘다 빈 값이 아닌 경우에
+        if (pwdObj.value.trim() == "")
+        {
+            alert("비밀번호를 입력하세요");
+            return false;
+        }
+        if (pwd2Obj.value.trim() == "")
+        {
+            alert("비밀번호확인을 입력하세요");
+            return false;
+        }
+
+        if (pwdObj.value != pwd2Obj.value)
+        {
+            alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+
+
+
+        return false;
+    }
+
+    // 주소(우편번호, 주소, 주소상세) - 빈 값
+    function checkAddr()
+    {
+        var postCode = document.getElementById("postCode");
+        if (postCode.value.trim() == "")
+        {
+            alert("우편번호를 입력하세요");
+            return false;
+        }
+
+        var addr = document.getElementById("addr");
+        if (addr.value.trim() == "")
+        {
+            alert("주소를 입력하세요");
+            return false;
+        }
+
+        var addrDetail = document.getElementById("addrDetail");
+        if (addrDetail.value.trim() == "")
+        {
+            alert("상세주소를 입력하세요");
+            return false;
+        }
+
+
+        return true;
+    }
+
+    // 약관동의 - 체크여부
+    function checkAgree()
+    {
+        var agree = document.getElementById("agree");
+        alert(agree.checked);
+
+        if (agree.checked == true)
+            return true;
+
+        alert("약관동의에 체크해주세요");
+        return false;
+    }
+
+    // 회원가입버튼클릭 시 
+    function checkSign() {
+        alert("회원가입 유효성 검사를 진행합니다.");
+
+        // id 검사
+        var idCheck = checkId();
+        if (idCheck == false)
+            return false;
+
+        // 이름 검사
+        var nameCheck = checkName();
+        if (nameCheck == false)
+            return false;
+
+        // 비밀번호 검사
+        var pwdCheck = checkPwd();
+        if (pwdCheck == false)
+            return false;
+
+
+
+        // 주민번호 검사
+        var ssnCheck = checkSsn();
+        if (ssnCheck == false)
+            return false;
+
+        // 전화번호 검사
+        var telCheck = checkTel();
+        if (telCheck == false)
+            return false;
+
+        // 주소 검사
+        var addrCheck = checkAddr();
+        if (addrCheck == false)
+            return false;
+
+        // 약관동의여부
+        var agreeCheck = checkAgree();
+        if (agreeCheck == false)
+            return false;
+
+
+        alert("회원가입 성공");
+
+    }
+
+</script>
+<!-- 스크립트 단 -->
+
+
+
+</head>
+<body>
+
+<!-- 사용자에게 보여지는 페이지 -->
+     <!--
+         아이디           텍스트박스
+         이름             텍스트박스
+         비밀번호         텍스트박스
+         비밀번호확인     텍스트박스
+         주민번호         텍스트박스
+         전화번호(핸드폰) 텍스트박스
+         주소             텍스트박스
+         주소상세         텍스트박스
+         약관동의         체크박스
+          
+         -----------------------------
+                 가입   취소
+     -->
+
+<div class="header" style="background-color: antiquewhite;">
+    <h1>
+        과제 1
+    </h1>
+    <hr style="background-color:darksalmon; height:5px;"/>
+</div>    
+
+<div class="content" style="background-color: antiquewhite; text-align: center; padding: 4px; ">
+    <form onsubmit="checkSign()">
+        <div class="contents" style="display:inline-block;">
+            <table style="font-size:20pt; font-weight:bold;">
+                <tr>
+                    <td style="text-align:right;">
+                        아이디
+                    </td>
+                    <td>
+                        <input type="text" style="width:200px; height:30px;" id="id"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;">
+                        이름
+                    </td>
+                    <td>
+                        <input type="text" style="width: 200px; height: 30px;" id="name"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;">
+                        비밀번호
+                    </td>
+                    <td>
+                        <input type="text" style="width: 200px; height: 30px;" id="pwd"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;">
+                        비밀번호 확인
+                    </td>
+                    <td>
+                        <input type="text" style="width: 200px; height: 30px;" id="pwd2"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;">
+                        주민번호
+                    </td>
+                    <td>
+                        <input type="text" style="width: 200px; height: 30px;" id="ssn" placeholder="xxxxxx-xxxxxxx"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;">
+                        전화번호(핸드폰)
+                    </td>
+                    <td>
+                        <input type="text" style="width: 200px; height: 30px;" id="tel" placeholder="xxx-xxxx-xxxx"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;">
+                        주소
+                    </td>
+                    <td>
+                        &nbsp;
+                        <input type="text" style="width: 50px; height: 30px;" id="postCode" placeholder="우편번호"/>
+                        <input type="text" style="width: 150px; height: 30px;" id="addr" placeholder="주소"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;">
+                        주소상세
+                    </td>
+                    <td>
+                        <input type="text" style="width: 200px; height: 30px;" id="addrDetail" placeholder="주소상세" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;">
+                        약관동의
+                    </td>
+                    <td style="text-align:left;">
+                        &nbsp;
+                        <input type="checkbox" id="agree" value="1"/>
+                    </td>
+                </tr>
+
+
+
+
+            </table>
+        </div>
+        <br />
+        <div class="contents" style="display:inline-block;">
+            <table>
+                <tr>
+                    <th>
+                        <input type="submit" value="가입하기" style="width: 200px; height: 30px; background-color:lightskyblue;"/>
+                    </th>
+                    <th>
+                        <input type="reset" value="돌아가기" style="width: 200px; height: 30px; background-color:lightslategray;"/>
+                    </th>
+                </tr>
+            </table>
+        </div>
+    </form>
+    
+
+</div>
+
+<div class="footer" style="background-color: darkgray; text-align:center;">
+    <hr />
+    <table style="display:inline-block; color:gainsboro">
+        <tr>
+            <th>
+                mostisoft.com
+            </th>
+        </tr>
+        <tr>
+            <th>
+                IT Service Center
+            </th>
+        </tr>
+        <tr>
+            <th>
+                Kim Sang Ki
+            </th>
+        </tr>
+        <tr>
+            <th>
+                010-5693-4223
+            </th>
+        </tr>
+    </table>
+</div>
+
+<!-- 사용자에게 보여지는 페이지 -->
+</body>
+</html>

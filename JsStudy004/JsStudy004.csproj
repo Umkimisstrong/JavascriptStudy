@@ -67,12 +67,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="MostiSubject_001_SignIn.html" />
+    <Content Include="MostiSubject_002_MyToDO.html" />
     <Content Include="Test001.html" />
     <Content Include="Test002.html" />
     <Content Include="Test003.html" />
     <Content Include="Test004.html" />
     <Content Include="Test005.html" />
+    <Content Include="Test006.html" />
     <Content Include="Web.config" />
+    <Content Include="WhatIsJs.html" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
