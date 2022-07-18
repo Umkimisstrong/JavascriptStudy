@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Test003.html</title>
+
+
+<script type="text/javascript">
+
+    // 함수
+
+    // --문자열 함수
+    // charAt(idx) => 지정된 위치에서 문자 찾기
+    //var string1 = "abcdefg";
+    //var stringIdx3 = string1.charAt(3);
+    //alert(stringIdx3); // d --> 4번째 문자가 추출된 것으로 확인
+    // charAt(idx) 인덱스는 0 1 2 3 순임
+
+    // indexOf(string) => 지정된 문자의 위치를 왼쪽부터 찾기
+    //var string2 = "opqrstu";
+    //var stringIdx3 = string2.indexOf("r");
+    //alert(stringIdx3); // 3 --> 4번째 문자가 추출된 것으로 확인
+    // indexOf(string) 인덱스는 0 1 2 3 순임
+
+    // lastIndextOf(string) => 지정된 문자의 위치를 오른쪽부터 찾기
+    //var string3 = "qqqqq";
+    //var stringIdx4 = string3.lastIndexOf("q");
+    //alert(stringIdx4); //0
+    //var stringIdx5 = string3.lastIndexOf("q");
+    //alert(stringIdx5); // 4 --> 동일한 문자가 있는 경우 가장 오른쪽 위치에 있는 인덱스를 반환
+
+    // substring(index1, index2) --> 지정된 위치에 있는 문자열 리턴
+    //var string5 = "abcdefg";
+    //var subStr = string5.substring(0, 3);
+    //alert(subStr);// abc  (a b c d e f g)
+                  //       0 1 2 3 4 5 6
+                  //   포함|     |미포함
+
+    // toLowerCase()  => 소문자로
+
+    // toUpperCase()  => 대문자로
+
+    // concat(string) => 문자열 결합
+
+    // trim()         => 문자열의 좌우 공백제거
+
+    // slice(start, end) => 문자열의 일부를 추출
+
+    // split(구분자)     => 구분자에 맞춰 분리
+    //var strArr = "xcvxcvxcvxcvxcvxcvxcvxcv";
+    //var splitStr = strArr.split("x");
+    //alert(splitStr);
+    // ,cv,cv,cv,cv,cv,cv,cv,cv
+    //alert(splitStr.length);
+    // 9
+     
+    // substr(start_index, length) => 문자열을 length 만큼 잘라냄
+    // replace(찾을값, 교체값) => 문자열에서 찾아 교체 값으로 바꾼 새로운 문자열 반환
+
+
+    // -- 내장 함수
+
+    // alert() 확인 버튼이 있는 메세지 창 호출
+    // prompt() 입력 상자가 있는 메세지 창 호출
+    // confirm() 확인과 취소 버튼이 있는 메세지 창 호출
+    // eval()    문자열로 표현된 자바스크립트 코드를 실행
+    // parseInt() 문자열을 정수형으로 바꿈
+    // parseFloat() 문자열을 부동소수점형으로 바꿈
+    // escape()     charstring 의 내용을 포함하는 문자열 값(유니코드 형식) 을 반환
+    // unescape()   escape 함수로 인코딩한 String 개체를 디코딩한다. 모두 해당 ASCII 코드 문자 집합으로 바뀜
+    // isNaN()      전달받은 값이 숫자인지 문자인지 판단하여 숫자가 아닌 경우 true 로 값을 반환
+    // Number()     객체를 수자형으로 변환
+    // toString()   객체를 문자형으로 변환
+
+    // Document
+    // Document Id, Name
+    // Document.getElementById("id") 메소드 - 단일값
+
+    // var x = Document.getElementById("id");
+    // x.value;
+
+
+    // Document.getElementsByName("name") 메소드 - 다중값(배열)
+
+    // var x = Document.getElementsByName("name");
+    // x[0].value
+
+    // --정규식
+    /*
+    ^        입력값의 시작 /^ This / 는 "This is.." 와 일치
+    $        입력값의 끝 / end / 는 "This is the end" 와 일치
+    *        0번 이상 반복 / se * /는 "seeee"와 "se"에 일치
+    ?        0번 또는 1번 반복 / ap ? /는 "apple" 과 "and"에 일치
+    +        1번 이상 반복 / ap + /는 "apple"에는 일치. "apie"에는 불일치
+    { n }    정확히 n번 반복 / ap{ 2 } 는 "apple"에는 일치. "apie"에는 불일치
+    { n,}    n번 이상 반복 / ap{ 2,} 는 "apple"과 "apple"의 모든 p에 일치. "apie"에는 불일치
+    { n, m } 최소 n번, 최대 m번 / a, p{ 2, 4 } /는 "appppppple"의 p 4개에 일치
+    .        줄 바꿈을 제외한 모든문자 / a, e / 는 "ape"와 "axe"에 일치
+    [^...]   대괄호 안의 문자를 제외한 모든문자 / a[^ px] / 는 "ale"에는 일치. "axe"나 "ape"에는 불일치
+    \b       단어 경계 /\bno / 는 "nono"에서 첫번째 "no"에 일치
+    \B       단어 경계를 제외한 모든문자 /\Bno / 는 "nono"에서 두번째 "no"에 일치
+    \d       0부터 9까지의 숫자 /\d{ 3 } 는 "Now in 123"에서 123에 일치
+    \D       숫자를 제외한 모든문자 /\D{2,4}/는 "Now in 123" 에서 "Now"에 일치
+    \w       단어 문자(알파벳,숫자,밑줄) /\w/는 "javascript"에서 "j"에 일치
+    \W       단어 문자가 아닌 문자(알파벳,숫자,밑줄이 아닌 문자) /\W/는 "100%"에서 "%"에 일치
+    \n       줄바꿈
+    \s       하나의 공백 문자
+    \S       공백 문자가 아닌 모든 문자
+    \t       탭
+    (x)      캡쳐할 괄호 일치한 문자들 기억
+    [...]    대괄호 안의 모든문자 /a[px]e/는 "ape" 와 "axe"에 일치. "ale"에는 불일치
+    */
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

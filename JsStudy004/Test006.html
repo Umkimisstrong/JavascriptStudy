@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Test006.html</title>
+ <script type="text/javascript">
+     function add_row()
+     {
+         var my_tbody = document.getElementById("my-tbody");
+         var row = my_tbody.insertRow(my_tbody.rows.length); // 하단에 추가
+         var cell1 = row.insertCell(0);
+         var cell2 = row.insertCell(1);
+         cell1.innerHTML = "항목";
+         cell2.innerHTML = new Date().toUTCString();
+     }
+
+     function delete_row()
+     {
+         var my_tbody = document.getElementById("my-tbody");
+
+         if (my_tbody.rows.length < 1)
+         {
+             alert("삭제할 행이 없습니다.");
+             return;
+         }
+
+         my_tbody.deleteRow(my_tbody.rows.length - 1); // 하단부터 삭제
+             
+     }
+     /*
+     항목	Mon, 18 Jul 2022 02:12:06 GMT
+     항목	Mon, 18 Jul 2022 02:12:06 GMT
+     항목	Mon, 18 Jul 2022 02:12:06 GMT
+     항목	Mon, 18 Jul 2022 02:12:06 GMT
+     항목	Mon, 18 Jul 2022 02:12:06 GMT
+     항목	Mon, 18 Jul 2022 02:12:06 GMT
+     항목	Mon, 18 Jul 2022 02:12:06 GMT
+     */
+ </script>
+</head>
+<body>
+    <button onclick="add_row()">행 추가하기</button>
+    <button onclick="delete_row()">행 삭제하기</button>
+    <hr />
+    <table>
+        <thead>
+            <th>테이블</th>
+            <th>헤더</th>
+        </thead>
+        <tbody id="my-tbody"></tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+<script type="text/javascript">
+
+    // Form
+
+    // 요소
+    // action = > 전송된 데이터를 처리할 서버 측 CGI 프로그램의 URL
+    // elements = > 폼 안에 있는 입력 양식 / 배열형태로 제공
+    // encoding = > CGI 프로그램으로 전송될 데이터 타입을 작성
+    // method = > 서버로 데이터를 전송하는 HTTP 프로토콜 방식을 작성
+    // name = > 폼 이름을 작성
+    // target = > 입력된 데이터를 서버로 보내고 그 처리 결과를 받는 창 설정
+
+    // submit() 입력된 데이터를 서버로 전송
+    // reset() 입력된 데이터 양식을 초기화
+
+    // onSubmit() 확인 버튼을 클릭하거나 submit() 메소드가 호출되어 데이터가 전송되기 전에 이벤트를 발생한다.
+    // onReset()  취소 버튼을 클릭하거나 reset() 메소드가 호출되어 입력 양식을 초기화하기 전에 이벤트를 발생한다.
+
+
+    // -- Text객체
+
+    // input type="text"
+    // type
+    // name
+    // value
+    // maxlength
+
+    // focus() : 커서를 위치시킨다.
+    // blur()  : 위치한 커서를 사라지게 한다.
+    // select() : 입력된 값을 모두 선택하게 한다.
+
+    // onBlur() : 텍스트 상자에서 커서가 사라질 때 발생하는 이벤트이다.
+    // onChange() : 내용이 변경될 때 발생하는 이벤트이다.
+    // onFocus()  : 커서가 위치할 때 발생하는 이벤트이다.
+    // onSelect() : 입력된 값을 선택할 때 발생하는 이벤트이다.
+
+
+    // -- Button 객체
+    // input type="button"
+    // type
+    // name
+    // value
+
+    // click() 버튼을 클릭
+    // onClick() 클릭 시 이벤트 발생한다.
+    // onMouseDown() 마우스를 눌렀을 때 이벤트가 발생한다.
+    // onMouseUp()   마우스를 눌렀다가 뗄 때 이벤트가 발생한다.
+
+    // -- Select 객체
+    // 콤보박스, 목록상제에 정보를 제공하는 객체
+    // length - 콤보, 목록상자에 포함된 항목의 개수를 나타낸다.
+    // name - 콤보, 목록상자의 이름을 작성한다.
+    // options - 콤보, 목록상자에 포함된 항목들로 배열 형태로 제공한다.
+    // selectedindex - 선택한 항목의 인덱스 번호를 나타낸다.
+    // type - 목록 상자의 다중 선택 정보를 설정한다.
+
+    // focus() 커서를 위치시킨다.
+    // blur()  위치한 커서를 사라지게 한다.
+
+    // onBlur() 텍스트 상자에서 커서가 사라질 때 발생하는 이벤트이다.
+    // onChange() 내용이 변경될 때 발생하는 이벤트이다.
+    // onFocus() 커서가 위치할때 발생하는 이벤트이다.
+
+
+    // -- Radio 객체
+    // 라디오 버튼을 제공하는 객체 input type="radio" 를 이용하여 형성
+    // checked
+    // defaultChecked
+    // length
+    // name
+    // value
+
+    // focus()
+    // blur()
+    // click()
+
+    // onFocus()
+    // onBlur()
+    // onclick()
+
+
+    // -- Checkbox 객체
+    // checked
+    // defaultChecked
+    // type
+    // name
+    // value
+
+    // focus()
+    // blur()
+    // click()
+
+    // onFocus()
+    // onBlur()
+    // onClick()
+
+    // -- Password 객체
+    // input typpe="password"
+
+    // -- Textarea 객체
+    /// <textarea>
+
+    // -- Submit, Reset
+    // input type="submit"
+    // input type="reset"
+
+
+    // -- 브라우저 내장객체
+    // window.defaultStatus  상태표시줄에 표시할 문자열의 초기 값 설정
+    // window.frames         창에 포함된 프레임을 배열 형태로 지정
+    // window.opener         오픈 메소드를 사용해서 새 창을 열었을 경우, 새 차을 열도록 한 문서를 가리킴
+    // window.parent         상위 프레임을 가리킴
+    // window.self           현재 작업중인 창을 가리킴
+    // window.top            프레임이 설정되기 전에 상태로 돌아감
+    // window.classes        문서 안에 정의된 모든 스타일시트의 정보를 갖는다.
+    // window.tags           모든 태그의 정보를 나타냄
+    // window.screenX        창의 X좌표를 반환한다.
+    // window.screenY        창의 Y좌표를 반환한다.
+    // window.close          창이 닫혀있는지 확인 후 true, false 를 반환한다.
+    // window.length         창안에 프레임 수 반환
+
+    // history.back()        페이지를 뒤로 이동한다.
+    // history.forward()     페이지를 앞으로 이동한다.
+    // history.go(n)         n 단계 만큼 이동한다.(음수가능)
+
+    // location.href         완전한 형태의 URL 주소를 가져온다.
+    // location.reload       문서를 다시 읽어온다.(새로고침)
+    var ret = window.open("https://localhost:44337/Test002.html", "width=300,height=500");
+
+
+
+</script>
+</head>
+<body>
+
+</body>
+</html>
