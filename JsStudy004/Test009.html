@@ -14,6 +14,10 @@
         
     }
 
+    .container {
+        display:inline-block;
+        max-width:1000px;
+    }
     /* mask */
     #mask {
         position:absolute;
@@ -31,6 +35,7 @@
         height: 100px;
         /*background-color:white;*/
         background-color: sandybrown;
+        
     }
     .header .header_left{
         float:left;
@@ -64,6 +69,7 @@
         height: 100px;
         /*background-color: black;*/
         background-color: darkslategray;
+        
     }
     .footer .footer_left {
         float: left;
@@ -74,8 +80,16 @@
     .footer .footer_middle {
         float: left;
         width: 60%;
-        background-color: blue;
         height: 100px;
+        text-align:center;
+    }
+    .footer_middle .footerTable {
+        margin-top:7%;
+        display:inline-block;
+        font-size: 8pt;
+    }
+    .footer_middle .footerTable td{
+        padding-left:3em;
     }
     .footer .footer_right {
         float: left;
@@ -83,7 +97,7 @@
         /*background-color: green;*/
         height: 100px;
     }
-
+    
     /* content */
     .content {
         display: inline-block;
@@ -463,165 +477,175 @@
     <!-- 페이지를 어둡게하기 위한 mask div -->
     <div id="mask"></div>
 
-    <!-- header -->
-    <!-- 로고 /          로그인/회원가입 -->
-    <div class="header">
+    <div class="container">
 
-        <div class="header_left">
+
+        <!-- header -->
+        <!-- 로고 /          로그인/회원가입 -->
+        <div class="header">
+
+            <div class="header_left">
+
+            </div>
+
+            <div class="header_middle">
+
+            </div>
+
+            <div class="header_right">
+
+                <!-- 로그인 배너 -->
+                <div id="loginBanner">
+                    <table class="loginTable">
+                        <tr>
+                            <td>
+                                <input type="button" class="signBtn" value="Sign-In" id="signInBtn" />
+                            </td>
+                            <td>
+                                <input type="button" class="signBtn" value="Sign-Up" id="signUpBtn" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
 
         </div>
+        <!-- header -->
 
-        <div class="header_middle">
+        <!-- content -->
+        <div class="content">
+
+
+            <!-- 메뉴 - 연 혁 / 대표소개 / 일 정 -->
+            <div class="content_left">
+
+
+                <div id="menuBanner">
+                    <table class="menuTable">
+                        <tr>
+                            <td>
+                                <input type="button" class="menuBtn" value="History" id="history" />
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="button" class="menuBtn" value="Ceo" id="ceo" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="button" class="menuBtn" value="Timeline" id="timeline" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+
+            <!-- 공백용 -->
+            <div class="content_middle">
+
+            </div>
+
+
+            <!-- 메뉴 클릭에 따라 달라질 내 용 ajax 처리 -->
+            <div class="content_right">
+
+                <!-- 내용물 -->
+                <div id="content_result">
+
+                </div>
+
+            </div>
 
         </div>
+        <!-- content -->
+        <!-- footer -->
+        <div class="footer">
+            <div class="footer_left">
 
-        <div class="header_right">
+            </div>
 
-            <!-- 로그인 배너 -->
-            <div id="loginBanner">
-                <table class="loginTable">
+            <div class="footer_middle">
+                <table class="footerTable">
                     <tr>
                         <td>
-                            <input type="button" class="signBtn" value="Sign-In" id="signInBtn"/>
+                            ckacl0233@gmail.com
                         </td>
                         <td>
-                            <input type="button" class="signBtn" value="Sign-Up" id="signUpBtn"/>
+                            02-769-1156
+                        </td>
+                        <td>
+                            서울시 영등포구 여의도동
                         </td>
                     </tr>
                 </table>
             </div>
 
-        </div>
+            <div class="footer_right">
 
-    </div>
-    <!-- header -->
-
-
-    <!-- content -->
-    <div class="content">
-
-
-        <!-- 메뉴 - 연 혁 / 대표소개 / 일 정 -->
-        <div class="content_left">
-
-
-            <div id="menuBanner">
-                <table class="menuTable">
-                    <tr>
-                        <td>
-                            <input type="button" class="menuBtn" value="History" id="history" />
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="button" class="menuBtn" value="Ceo" id="ceo" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="button" class="menuBtn" value="Timeline" id="timeline" />
-                        </td>
-                    </tr>
-                </table>
             </div>
+        </div>
+        <!-- footer -->
 
+        <!-- 로그인팝업 -->
+        <div id="loginLayer">
+            <h1>
+                Sign - In
+            </h1>
+            <table class="loginLayerTable">
+                <tr>
+                    <td>
+                        NAME
+                    </td>
+                    <td>
+                        <input type="text" class="txtBox" id="loginName" placeholder="Do not be empty" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        TEL
+                    </td>
+                    <td>
+                        <input type="text" class="txtBox" id="loginTel" placeholder="010-xxxx-xxxx" maxlength="13" />
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <input type="button" value="sign-in" id="signInOkBtn" />
         </div>
 
-        <!-- 공백용 -->
-        <div class="content_middle">
 
+        <!-- 회원가입팝업 -->
+        <div id="signUpLayer">
+            <h1>
+                Sign - Up
+            </h1>
+            <table class="signUpLayerTable">
+                <tr>
+                    <td>
+                        NAME
+                    </td>
+                    <td>
+                        <input type="text" class="txtBox" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        TEL
+                    </td>
+                    <td>
+                        <input type="text" class="txtBox" id="signUpTel" placeholder="010-xxxx-xxxx" maxlength="13" />
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <input type="button" value="sign-in" id="signUpOkBtn" />
         </div>
 
-
-        <!-- 메뉴 클릭에 따라 달라질 내 용 ajax 처리 -->
-        <div class="content_right">
-            
-            <!-- 내용물 -->
-            <div id="content_result">
-                
-            </div>
-
-        </div>
-
-    </div>
-    <!-- content -->
-
-    <!-- footer -->
-    <div class="footer">
-        <div class="footer_left">
-
-        </div>
-
-        <div class="footer_middle">
-
-        </div>
-
-        <div class="footer_right">
-
-        </div>
-    </div>
-    <!-- footer -->
-
-
-
-
-
-<!-- 로그인팝업 -->
-<div id="loginLayer">
-    <h1>
-        Sign - In
-    </h1>
-    <table class="loginLayerTable">
-        <tr>
-            <td>
-                NAME
-            </td>
-            <td>
-                <input type="text" class="txtBox" id="loginName" placeholder="Do not be empty" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                TEL
-            </td>
-            <td>
-                <input type="text" class="txtBox" id="loginTel" placeholder="010-xxxx-xxxx" maxlength="13" />
-            </td>
-        </tr>
-    </table>
-    <br />
-    <input type="button" value="sign-in" id="signInOkBtn"/>
-</div>
-
-
-<!-- 회원가입팝업 -->
-<div id="signUpLayer">
-    <h1>
-        Sign - Up
-    </h1>
-    <table class="signUpLayerTable">
-        <tr>
-            <td>
-                NAME
-            </td>
-            <td>
-                <input type="text" class="txtBox" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                TEL
-            </td>
-            <td>
-                <input type="text" class="txtBox" id="signUpTel" placeholder="010-xxxx-xxxx" maxlength="13"/>
-            </td>
-        </tr>
-    </table>
-    <br />
-    <input type="button" value="sign-in" id="signUpOkBtn"/>
-</div>
-
-
+    </div> 
+    <!-- container -->
 </body>
 </html>
