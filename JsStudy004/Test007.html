@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Test007.html</title>
+
+<!-- CSS 단 -->
+<style type="text/css">
+    #layerPopup {
+        
+        z-index:1;
+        display:none;
+    }
+
+    .tdLeft {
+        text-align:right;
+    }
+
+</style>
+
+<!-- 스크립트 단 -->
+<script type="text/javascript">
+    function showLayer()
+    {
+        //alert("호출");
+        var layerPopup = document.getElementById("layerPopup");
+        
+
+        // 가로
+        var widthObj = document.getElementById("widthValue");
+        //alert(widthObj.value);
+
+        // 세로
+        var heightObj = document.getElementById("heightValue");
+        //alert(heightObj.value);
+
+        // top
+        var topObj = document.getElementById("topValue");
+        //alert(topObj.value);
+
+        // left
+        var leftObj = document.getElementById("leftValue");
+        //alert(leftObj.value);
+
+        // color
+        var colorObj = document.getElementById("colorValue");
+
+        // background-color
+        var backgroundColorObj = document.getElementById("backgroundColorValue");
+
+        //alert(colorObj.value);
+
+        // userInput
+        var userInputObj = document.getElementById("userInput");
+
+
+        layerPopup.style.width = widthObj.value+"px";
+        layerPopup.style.height = heightObj.value + "px";
+        layerPopup.style.top = topObj.value + "px";
+        layerPopup.style.left = leftObj.value + "px";
+        layerPopup.style.color = colorObj.value;
+        layerPopup.style.backgroundColor = backgroundColorObj.value;
+        layerPopup.style.position = "absolute";
+        document.getElementById("result").value = userInputObj.value;
+
+        layerPopup.style.display = "inline";
+
+    }
+    function closeLayer()
+    {
+        var layerPopup = document.getElementById("layerPopup");
+        layerPopup.style.display = "none";
+    }
+
+</script>
+
+
+
+
+</head>
+<body>
+    <div class="header">
+        <h1>
+            과제 1 : 사용자 정의 레이어 팝업 만들기
+        </h1>
+        <hr />
+
+    </div>
+
+    <div class="content">
+        <input type="button" onclick="showLayer()" value="레이어팝업호출" />
+
+
+        <!-- 속성 사용자 정의 필드 -->
+        <div>
+            <table>
+                <tr>
+                    <td class="tdLeft">
+                        가로
+                    </td>
+                    <td>
+                        <select id="widthValue">
+                            <option name="width" value="100">100</option>
+                            <option name="width" value="200">200</option>
+                            <option name="width" value="300">300</option>
+                            <option name="width" value="400">400</option>
+                            <option name="width" value="500">500</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdLeft">
+                        세로
+                    </td>
+                    <td>
+                        <select id="heightValue">
+                            <option name="height" value="100">100</option>
+                            <option name="height" value="200">200</option>
+                            <option name="height" value="300">300</option>
+                            <option name="height" value="400">400</option>
+                            <option name="height" value="500">500</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdLeft">
+                        TOP
+                    </td>
+                    <td>
+                        <select id="topValue">
+                            <option name="top" value="100">100</option>
+                            <option name="top" value="200">200</option>
+                            <option name="top" value="300">300</option>
+                            <option name="top" value="400">400</option>
+                            <option name="top" value="500">500</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdLeft">
+                        LEFT
+                    </td>
+                    <td>
+                        <select id="leftValue">
+                            <option name="left" value="100">100</option>
+                            <option name="left" value="200">200</option>
+                            <option name="left" value="300">300</option>
+                            <option name="left" value="400">400</option>
+                            <option name="left" value="500">500</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdLeft">
+                        COLOR
+                    </td>
+                    <td>
+                        <select id="colorValue">
+                            <option name="color" value="red">red</option>
+                            <option name="color" value="blue">blue</option>
+                            <option name="color" value="green">green</option>
+                            <option name="color" value="ivory">ivory</option>
+                            <option name="color" value="black">black</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdLeft">
+                        BACKGROUND-COLOR
+                    </td>
+                    <td>
+                        <select id="backgroundColorValue">
+                            <option name="backgroundColor" value="red">red</option>
+                            <option name="backgroundColor" value="blue">blue</option>
+                            <option name="backgroundColor" value="green">green</option>
+                            <option name="backgroundColor" value="ivory">ivory</option>
+                            <option name="backgroundColor" value="black">black</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdLeft">
+                        INPUT SOMETHING...
+                    </td>
+                    <td>
+                        <input type="text" id="userInput" style="border:1px solid grey; background-color:aqua;"/>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+    <div class="footer">
+
+    </div>
+
+    <div class="layerPopup" id="layerPopup">
+        그저그런 넓이<br />
+
+        사용자가 입력한 내용
+        <input type="text" style="border:none; background-color:aqua;"id="result"/>
+        <input type="button" onclick="closeLayer()" value="레이어팝업닫기" />
+    </div>
+
+</body>
+</html>

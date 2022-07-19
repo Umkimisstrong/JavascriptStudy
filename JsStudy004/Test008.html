@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Test008.html</title>
+
+<!-- 스크립트 단 -->
+<script type="text/javascript">
+    function checkTel()
+    {
+        alert("유효성을 검사합니다.");
+
+        // 빈값
+        var tel = document.getElementById("tel");
+        if (tel.value.trim() == "")
+        {
+            alert("아무런 값이 입력되지 않았습니다. \n휴대전화번호를 입력해주세요");
+            //tel.onselect();
+            tel.focus();
+            return;
+        }
+
+        // 앞자리가 010이 아닌 것
+        if (tel.value.substring(0, 3) != "010")
+        {
+            alert("휴대전화번호는 앞자리가 『010』 으로 시작해야 합니다.");
+            tel.focus();
+            return;
+        }
+
+        // 전체 문자열의 길이가 010-1111-1111 -> 13 자리가 아닌지
+        if (tel.value.length < 13)
+        {
+            alert("휴대전화형식에 맞지 않습니다. \n -를 포함한 총 13자리를 입력해주세요.");
+            tel.focus();
+            return;
+        }
+
+        // 010 뒷자리의 - 를 제거한 문자열이 숫자로 파싱 되는지 -> isNaN(value) : value 가 숫자인지아닌지 검사하는 함수
+        // 숫자가 아니면 true, 숫자이면 false 를 반환
+        var telNum = tel.value.replaceAll("-", "");
+        if (isNaN(telNum) == true)
+        {
+            alert("휴대전화번호는 010-xxxx-xxxx 형식으로 \n x는 숫자여야합니다.");
+            tel.focus();
+            return;
+        }
+
+        //alert(isNaN(telNum));
+        //alert(telNum);
+        // 통과하면 성공
+        alert("올바른 휴대전화번호입니다.");
+
+        var divResult = document.getElementById("result");
+        divResult.innerHTML = "입력하신 휴대폰번호 : " + telNum + " 입니다. ";
+    }
+</script>
+</head>
+
+
+<body>
+<div class="header">
+    <h1>
+        과제 2 : 휴대전화번호 검사
+    </h1>
+    <hr />
+</div>
+
+<div class="content">
+    
+    <table>
+        <tr>
+            <td>
+                <input type="text" placeholder="010-xxxx-xxxx" id="tel" maxlength="13"/>
+            </td>
+            <td>
+                <input type="button" value="체크" onclick="checkTel()" />
+            </td>
+        </tr>
+    </table>
+    <br />
+    <div id="result">
+        
+    </div>
+
+
+</div>
+
+<div class="footer">
+
+</div>
+</body>
+</html>

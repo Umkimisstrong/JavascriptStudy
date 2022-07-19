@@ -67,6 +67,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ceo.html" />
+    <Content Include="history.html" />
     <Content Include="MostiSubject_001_SignIn.html" />
     <Content Include="MostiSubject_002_MyToDO.html" />
     <Content Include="Test001.html" />
@@ -75,6 +77,10 @@
     <Content Include="Test004.html" />
     <Content Include="Test005.html" />
     <Content Include="Test006.html" />
+    <Content Include="Test007.html" />
+    <Content Include="Test008.html" />
+    <Content Include="Test009.html" />
+    <Content Include="Timeline.html" />
     <Content Include="Web.config" />
     <Content Include="WhatIsJs.html" />
   </ItemGroup>

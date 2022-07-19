@@ -1,0 +1,627 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>홈페이지용 템플릿</title>
+<!-- CSS 단 -->
+<!-- 템플릿 -->
+<style>
+
+    /* body */
+    body {
+        text-align:center;
+        background-color:gray;
+        
+    }
+
+    /* mask */
+    #mask {
+        position:absolute;
+        z-index:9000;
+        background-color:#000;
+        display:none;
+        left:0;
+        top:0;
+    }
+
+    /* header */
+    .header {
+        display: inline-block;
+        width: 1000px;
+        height: 100px;
+        /*background-color:white;*/
+        background-color: sandybrown;
+    }
+    .header .header_left{
+        float:left;
+        width:20%;
+        /*background-color:red;*/
+        height:100px;
+    }
+    .header .header_middle {
+        float: left;
+        width: 50%;
+        /*background-color: blue;*/
+        height: 100px;
+    }
+    .header .header_right{
+        float:left;
+        width:30%;
+        /*background-color:green;*/
+        height:100px;
+        text-align:center;
+    }
+        .header .header_right #loginBanner {
+            display:inline-block;
+            margin-top:10%;
+        }
+
+
+    /* footer */
+    .footer {
+        display: inline-block;
+        width: 1000px;
+        height: 100px;
+        /*background-color: black;*/
+        background-color: darkslategray;
+    }
+    .footer .footer_left {
+        float: left;
+        width: 20%;
+        /*background-color: red;*/
+        height: 100px;
+    }
+    .footer .footer_middle {
+        float: left;
+        width: 60%;
+        background-color: blue;
+        height: 100px;
+    }
+    .footer .footer_right {
+        float: left;
+        width: 20%;
+        /*background-color: green;*/
+        height: 100px;
+    }
+
+    /* content */
+    .content {
+        display: inline-block;
+        width: 990px;
+        height: 800px;
+        /*background-color: yellow;*/
+        /*background-color: darksalmon;*/
+        vertical-align: middle;
+    }
+    .content .content_left {
+        margin-top:3%;
+        display: inline-block;
+        float: left;
+        width: 20%;
+        height: 750px;
+        background-color: wheat;
+        text-align:center;
+    }
+    .content .content_middle {
+        margin-top: 3%;
+        display: inline-block;
+        float: left;
+        width: 5%;
+        height: 750px;
+        background-color: cadetblue;
+    }
+    .content .content_right {
+        margin-top: 3%;
+        display: inline-block;
+        float: left;
+        width: 75%;
+        height: 750px;
+        background-color: aliceblue;
+        text-align:left;
+    }
+        .content .content_right #content_result {
+            display:inline-block;
+            margin-left:3%;
+            margin-top:3%;
+            width:95%;
+            height:95%;
+        }
+    .content .content_left #menuBanner {
+        display:inline-block;
+        width:120px;
+        height:700px;
+        /*background-color: aquamarine;*/
+        margin-top: 10%;
+        text-align:center;
+    }
+
+    /* menu */
+    #menuBanner .menuTable {
+        display: inline-block;
+        padding:10px;
+    }
+    #menuBanner .menuTable td {
+     
+        padding-bottom:20px;
+        text-align:center;
+    }
+    .menuBtn {
+        width:100px;
+        background-color:transparent;
+        border:none;
+    }
+        .menuBtn:hover {
+            color:white;
+        }
+        .menuBtn:active {
+            color:blue;
+        }
+
+    /* login / signUp */
+    #loginBanner {
+        background-color: none;
+    }
+    #loginBanner .loginTable {
+        background-color:none;
+    }
+
+    #signUpBtn{
+        width:100px;
+        font-family:Arial;
+        font-size:12pt;
+        background-color:transparent;
+        border:none;
+    }
+    #signUpBtn:hover{
+     
+        color:white;
+        /*background-color: white;*/
+    }
+    #signUpBtn:active {
+        color: blue;
+        /*background-color: white;*/
+    }
+
+    #signInBtn {
+        width: 100px;
+        font-family: Arial;
+        font-size: 12pt;
+        background-color: transparent;
+        border: none;
+    }
+        #signInBtn:hover {
+            color: white;
+            /*background-color: white;*/
+        }
+        #signInBtn:active {
+            color: blue;
+            /*background-color: white;*/
+        }
+
+    .tdLeft {
+        text-align:right;
+        font-weight:bold;
+    }
+    .contentTable td{
+        padding-bottom:1em;
+        font-weight:bold;
+    }
+
+    #signUpLayer {
+        display:none;
+        width:400px;
+        height:200px;
+        top:200px;
+        left:450px;
+        position:absolute;
+        z-index:10000;
+        background-color:darkgrey;
+    }
+    #loginLayer {
+        display: none;
+        width: 400px;
+        height: 200px;
+        top: 200px;
+        left: 450px;
+        background-color: darkgrey;
+        position: absolute;
+        text-align: center;
+        z-index: 10000;
+    }
+
+    .loginLayerTable {
+        display:inline-block;
+    }
+    .signUpLayerTable {
+        display: inline-block;
+    }
+</style>
+<!-- CSS 단 -->
+
+
+<!-- 스크립트 단 -->
+    <!-- jquery CDN -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js">
+</script>
+
+<script type="text/javascript">
+    function checkTel() {
+        //alert("유효성을 검사합니다.");
+
+        // 빈값
+        var tel = document.getElementById("loginTel");
+        if (tel.value.trim() == "") {
+            alert("아무런 값이 입력되지 않았습니다. \n휴대전화번호를 입력해주세요");
+            //tel.onselect();
+            tel.focus();
+            return false;
+        }
+
+        // 앞자리가 010이 아닌 것
+        if (tel.value.substring(0, 3) != "010") {
+            alert("휴대전화번호는 앞자리가 『010』 으로 시작해야 합니다.");
+            tel.focus();
+            return false;
+        }
+
+        // 전체 문자열의 길이가 010-1111-1111 -> 13 자리가 아닌지
+        if (tel.value.length < 13) {
+            alert("휴대전화형식에 맞지 않습니다. \n -를 포함한 총 13자리를 입력해주세요.");
+            tel.focus();
+            return false;
+        }
+
+        // 010 뒷자리의 - 를 제거한 문자열이 숫자로 파싱 되는지 -> isNaN(value) : value 가 숫자인지아닌지 검사하는 함수
+        // 숫자가 아니면 true, 숫자이면 false 를 반환
+        var telNum = tel.value.replaceAll("-", "");
+        if (isNaN(telNum) == true) {
+            alert("휴대전화번호는 010-xxxx-xxxx 형식으로 \n x는 숫자여야합니다.");
+            tel.focus();
+            return false;
+        }
+
+        //alert(isNaN(telNum));
+        //alert(telNum);
+        // 통과하면 성공
+        alert("올바른 휴대전화번호입니다.");
+        return true;
+    }
+
+    function checkName()
+    {
+        var name = document.getElementById("loginName");
+
+        if (name.value.trim() == "")
+        {
+            alert("이름을 입력하세요");
+            name.focus();
+            return false;
+        }
+
+        return true;
+    }
+
+
+    // Layer 팝업 생성 시 화면을 어둡게 가려주는 함수
+    function wrapWindowByMask()
+    {
+        // 화면의 높이와 너비를 구함
+        var maskHeight = $(document).height();
+        var maskWidth = $(document).width();
+
+        // 마스크의 높이와 너비를 화면 것으로 만든다.
+        $("#mask").css({ "width": maskWidth, "height": maskHeight });
+
+        // 애니메이션효과 1초동안 까맣게, 80% 불투명도
+        $("#mask").fadeTo("slow", 0.5);
+        $("#mask").fadeIn(500);
+
+    }
+
+    // 버튼별 클릭시 이벤트 생성하기
+    // 1. 로그인      - 로그인 팝업 보여주기
+    // 2. 로그인 완료 - 로그인 팝업 내리기 / (로그인/회원가입) 배너 내리고  로그인한 회원이름 / 로그아웃 띄워주기
+
+    // 3. 회원가입    - 회원가입 팝업 보여주기
+    // 4. 회원가입완료- 회원가입 팝업 내리기 / 메인화면 보여주기
+
+    // 5. 메뉴 - 연혁       : ajax 로 연혁 출력해주기                  - history.html 
+    // 6. 메뉴 - 대표자소개 : ajax 로 대표자 소개 출력해주기           - ceo.html
+    // 7. 메뉴 - 일정       : ajax 로 일정 출력해주기                  - timeline.html
+
+    // 8. 로고 - 액션 없음
+
+    $(document).ready(function () {
+        //alert("테스트");
+
+        // signin버튼 클릭시 - 팝업
+        $("#signInBtn").click(function (e) {
+            //alert("signIn");
+            e.preventDefault();
+            wrapWindowByMask();
+
+            //$("#loginLayer").css("display", "inline-block");
+            $("#loginLayer").show();
+
+            //signinok 버튼 클릭시 - 빈 값 점검, 전화번호 유효성 검사 후 팝업이랑 마스크 내리기 
+            $("#signInOkBtn").click(function (e) {
+                e.preventDefault();
+
+                // 이름 검사
+                var nameCheck = checkName();
+                if (nameCheck == true) {
+
+                    var telCheck = checkTel();
+
+                    if (telCheck == true)
+                    {
+                        $("#loginLayer").css("display", "none");
+                        $("#mask").hide();
+                    }
+                }
+            });
+            //검은 막 클릭 시 - 팝업이랑 마스크 내리기
+            $("#mask").click(function () {
+                $(this).hide();
+                $("#loginLayer").hide();
+
+            });
+        });
+
+        
+        // signUp버튼 클릭시 - 팝업
+        $("#signUpBtn").click(function (e) {
+            //alert("signUp");
+            // 레이어 띄워줌
+            e.preventDefault();
+            wrapWindowByMask();
+
+            $("#signUpLayer").css("display", "inline");
+
+            // signupok 버튼 클릭시 - 팝업이랑 마스크 내리기
+            $("#signUpOkBtn").click(function (e) {
+                e.preventDefault();
+                $("#signUpLayer").css("display", "none");
+                $("#mask").hide();
+
+            });
+
+            // 검은 막 클릭시 - 팝업이랑 마스크 내리기
+            $("#mask").click(function () {
+                $("#signUpLayer").hide();
+                $("#mask").hide();
+            });
+        });
+
+        // history 버튼 클릭시 - ajax
+        $("#history").click(function () {
+            //alert("연혁");
+            $.ajax({
+                type: "GET"
+                , url: "history.html"
+                , success: function (data) {
+                    // 성공 시
+
+                    // 연혁 div에 innerHTML
+                    $("#content_result").html(data);
+
+                }
+                , error: function (xhr, status, error) {
+                    alert("오류발생");
+                }
+
+            });
+
+
+        });
+
+        // ceo 버튼 클릭시 - ajax
+        $("#ceo").click(function () {
+            //alert("대표");
+            $.ajax({
+                type: "GET"
+                , url: "ceo.html"
+                , success: function (data) {
+                    // 성공 시
+
+                    // 연혁 div에 innerHTML
+                    $("#content_result").html(data);
+
+                }
+                , error: function (xhr, status, error) {
+                    alert("오류발생");
+                }
+
+            });
+        });
+
+        // timeline 버튼 클릭 시 : ajax
+        $("#timeline").click(function () {
+            //alert("일정");
+            $.ajax({
+                type: "GET"
+                , url: "timeline.html"
+                , success: function (data) {
+                    // 성공 시
+
+                    // 연혁 div에 innerHTML
+                    $("#content_result").html(data);
+
+                }
+                , error: function (xhr, status, error) {
+                    alert("오류발생");
+                }
+
+            });
+            
+        });
+    });
+
+</script>
+</head>
+<body>
+    <!-- 페이지를 어둡게하기 위한 mask div -->
+    <div id="mask"></div>
+
+    <!-- header -->
+    <!-- 로고 /          로그인/회원가입 -->
+    <div class="header">
+
+        <div class="header_left">
+
+        </div>
+
+        <div class="header_middle">
+
+        </div>
+
+        <div class="header_right">
+
+            <!-- 로그인 배너 -->
+            <div id="loginBanner">
+                <table class="loginTable">
+                    <tr>
+                        <td>
+                            <input type="button" class="signBtn" value="Sign-In" id="signInBtn"/>
+                        </td>
+                        <td>
+                            <input type="button" class="signBtn" value="Sign-Up" id="signUpBtn"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- header -->
+
+
+    <!-- content -->
+    <div class="content">
+
+
+        <!-- 메뉴 - 연 혁 / 대표소개 / 일 정 -->
+        <div class="content_left">
+
+
+            <div id="menuBanner">
+                <table class="menuTable">
+                    <tr>
+                        <td>
+                            <input type="button" class="menuBtn" value="History" id="history" />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="button" class="menuBtn" value="Ceo" id="ceo" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="button" class="menuBtn" value="Timeline" id="timeline" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+        <!-- 공백용 -->
+        <div class="content_middle">
+
+        </div>
+
+
+        <!-- 메뉴 클릭에 따라 달라질 내 용 ajax 처리 -->
+        <div class="content_right">
+            
+            <!-- 내용물 -->
+            <div id="content_result">
+                
+            </div>
+
+        </div>
+
+    </div>
+    <!-- content -->
+
+    <!-- footer -->
+    <div class="footer">
+        <div class="footer_left">
+
+        </div>
+
+        <div class="footer_middle">
+
+        </div>
+
+        <div class="footer_right">
+
+        </div>
+    </div>
+    <!-- footer -->
+
+
+
+
+
+<!-- 로그인팝업 -->
+<div id="loginLayer">
+    <h1>
+        Sign - In
+    </h1>
+    <table class="loginLayerTable">
+        <tr>
+            <td>
+                NAME
+            </td>
+            <td>
+                <input type="text" class="txtBox" id="loginName" placeholder="Do not be empty" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                TEL
+            </td>
+            <td>
+                <input type="text" class="txtBox" id="loginTel" placeholder="010-xxxx-xxxx" maxlength="13" />
+            </td>
+        </tr>
+    </table>
+    <br />
+    <input type="button" value="sign-in" id="signInOkBtn"/>
+</div>
+
+
+<!-- 회원가입팝업 -->
+<div id="signUpLayer">
+    <h1>
+        Sign - Up
+    </h1>
+    <table class="signUpLayerTable">
+        <tr>
+            <td>
+                NAME
+            </td>
+            <td>
+                <input type="text" class="txtBox" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                TEL
+            </td>
+            <td>
+                <input type="text" class="txtBox" id="signUpTel" placeholder="010-xxxx-xxxx" maxlength="13"/>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <input type="button" value="sign-in" id="signUpOkBtn"/>
+</div>
+
+
+</body>
+</html>
