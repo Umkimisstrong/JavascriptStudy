@@ -3,12 +3,16 @@
 <head>
     <meta charset="utf-8" />
     <title>My ToDo App</title>
+
+<!-- Bootstrap CDN -->
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"/>
+<!-- Jquery CDN -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>    
 <!-- CSS 단 -->
 <style type="text/css">
     body 
     {
-        background-color: cornsilk;
+        
         text-align: center;
     }
     .outerPage 
@@ -25,7 +29,6 @@
     }
     .innerPage 
     {
-        background-color:floralwhite;
         width: 1400px;
         height: 1500px;
         display:inline-block;
@@ -78,7 +81,7 @@
         display:inline-block;
         width: 1050px;
         height: 60px;
-        font-size: 35pt;
+        font-size: 23pt;
         border-block-color: darkslategrey;
         
         border:5px groove;
@@ -87,7 +90,7 @@
     {
         width: 220px;
         height: 55px;
-        background-color: cadetblue;
+        background-color: cornflowerblue;
         border-collapse:collapse;
         color:white;
         font-size: 25pt;
@@ -102,65 +105,123 @@
         border-block-color:dimgrey;
         border-collapse: collapse;
     }
-    .listTable td
+        .listTable .td0 {
+            width: 50px;
+        }
+        
+    .listTable .td1
     {
-        width:1200px;
-        background-color:bisque;
+        width:1150px;
         text-align: left;
         border-bottom:1px solid gray;
         
     }
+        .listTable .td2 {
+            width: 50px;
+            text-align: right;
+            border-bottom: 1px solid gray;
+        }
 
         .listTable th {
             width: 50px;
-            background-color: bisque;
+            
             text-align: right;
             border-bottom:1px solid gray;
             
         }
+
+    .success {
+        width: 20px;
+        height: 20px;
+        border: 3px solid #707070;
+    }
+
     
     
 </style>
 <!-- CSS 단 -->
 
 <!-- 스크립트 단 -->
-<script type="text/javascript">
+<script>
+    $(document).ready(function () {
 
-    function add_row()
-    {
-        var list = document.getElementById("listTable");
+        // 버튼별 ID를 다르게 부여할 index 용 변수
+        var n = 1;
 
-        var todo = document.getElementById("todo");
 
-        if (todo.value.trim() == "")
-        {
-            alert("please input ToDo..");
-            return;
-        }
+        // ※ 처리할 이벤트          :  3개
 
-        
-        var row = list.insertRow(list.rows.length); // 하단에 추가
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        
-        cell1.innerHTML = "<span class='todoList'> &nbsp;" + todo.value + "</span>";
-        //cell2.innerHTML = "<button type='button' class='btn-close' id='closeBtn' aria-label='Close' style='font-size: 15pt;' onclick='delete_row()'></button>";
-        cell2.outerHTML = "<th><button type='button' class='btn-close' id='closeBtn' aria-label='Close' style='font-size: 15pt;' onclick='delete_row()'></button> &nbsp;</th>"
-    }
+        // 0. 기본                : 짝수행과 홀수행의 배경색을 다르게
+        // td:odd 의 배경색을 하늘색으로(add 버튼 클릭 시 포함)
 
-    function delete_row()
-    {
-        var list = document.getElementById("listTable");
 
-        if (list.rows.length < 1) {
-            alert("삭제할 todo가 없습니다.");
-            return;
-        }
+        // 1. add 버튼 클릭 시    : 테이블에 1행씩 추가
+        //    - 추가되는 데이터   : 체크박스 / 입력한내용 / 삭제버튼
+        $("#add").click(function () {
 
-        list.deleteRow(list.rows.length - 1); // 하단부터 삭제
+            // 입력값 받기
+            var textBox = $("#todo");
+            var td = textBox.val();
 
-    }
+            // 입력값이 없으면 입력하라고 알려주면서 해당 텍스트박스에 포커스
+            if (td.trim() == "")
+            {
+                alert("입력된 정보가 없습니다. 다시 입력해주세요");
+                textBox.focus();
+                return;
+            }
 
+            // 입력이 되었다면 테이블에 행 그리기 ▼▼▼
+
+            // tr 여는태그
+            var tr = "<tr>";
+
+            // td 체크박스
+            var td0 = "<td class='td0'>" + "<input type='checkbox' class='success' id='success"+n+"' /> <lable for='success'></label></td>";
+
+            // td todo 입력값
+            var td1 = "<td class='td1'><span class='todoList' > &nbsp;" + td + "</span></td>";
+
+            // td 삭제버튼
+            var td2 = "<td class='td2'><button type='button' class='close' id='closeBtn" + n + "' style='font-size: 15pt; background:none; border:none;'>"
+                    + "<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='red' class='bi bi-trash3-fill' viewBox='0 0 16 16'><path d = 'M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z'/></svg >"
+                    + "</button> &nbsp;</td>";
+
+            tr += td0 + td1 + td2 + "</tr>";
+            //alert(tr);
+            
+            $("#listTable").append(tr);
+            $("#listTable > tr:even").css("background", "white");
+            n++;
+        });
+
+        // 2. delete 버튼 클릭 시 : 테이블 마지막 1행씩 삭제
+        $(document).on("click", ".close", function () {
+           $("#listTable > tr:last").remove();
+        });
+
+        // 3. check 박스 선택 시  : 체크박스 / 입력한내용 / 삭제버튼 --- 중 입력한내용 중간에 삭선 긋기(완료표시)
+        $(document).on("change", ".success", function () {
+
+            // 해당 체크박스에서 가장 가까운 <td> 태그를 찾아서
+            var cell = $(this).closest("td");
+
+            // 다음 <td>태그 (입력한요소)를찾고
+            var cell2 = cell.next();
+
+
+            if (this.checked) // 체크를 하였을때 : 삭선 : text-decoration : line-through
+            {
+                // 텍스트 위로 줄 긋는 css 적용
+                cell2.css("text-decoration", "line-through");
+            }
+            else              // 체크를 해제하였을때 : 삭선 해제 (초기스타일)
+            {
+                cell2.css("text-decoration", "initial");
+            }
+        });
+
+    })
 </script>
 <!-- 스크립트 단 -->
 
@@ -171,64 +232,57 @@
     <!-- 바깥 페이지 -->
     <div class="outerPage">
 
-        
+
         <!-- 내부 페이지 -->
         <div class="innerPage">
 
-            <!-- 제목 : My To-Do App -->
+            <!-- 제목 : ToDo List -->
             <div class="title">
                 <h1>
-                    My To-Do App
+                    ToDo List
                 </h1>
-                <hr />
+
             </div>
 
 
-            <!-- 텍스트박스    버튼 -->
-            <!-- 리스트        버튼(x) -->
+            <!-- 전체 리스트 -->
             <div class="lists">
-                
-                    <div class="todoForm">
-                        <table class="todoTable" id="todoTable">
-                            <tr>
-                                <td>
-                                    <input type="text" class="txtBox" placeholder="Input new todo..." id="todo"/>
-                                </td>
-                                <td>
-                                    <input type="button" class="submitBtn" value="New Entry" onclick="add_row()"/>
-                                </td>
-                            </tr>
-                        </table>
-                        <hr />
-                    </div>
-                
-                <!-- ToDo App 에 추가되는 리스트 -->
-                
+
+                <!-- 사용자 입력 영역 -->
                 <div class="todoForm">
-                    <table class="listTable" id="listTable">
-                        <!--
+                    <table class="todoTable" id="todoTable">
                         <tr>
                             <td>
-                                <span class="todoList">오늘의 할일 1 : Javascript 공부하기</span> 
+                                <input type="text" class="txtBox" placeholder=" New Task" id="todo" />
                             </td>
                             <td>
-                                <button type="button" class="btn-close" aria-label="Close" style="font-size: 15pt;" onclick="delete_row()"></button>
+                                <input type="button" class="submitBtn" id="add" value="Add" />
                             </td>
                         </tr>
-                        -->
+                    </table>
+                    <hr />
+                </div>
+                <!-- 사용자 입력 영역 -->
+
+
+
+
+
+                <!-- 사용자 입력 시 추가되는 영역 -->
+                <div class="todoForm">
+                    <table class="listTable" id="listTable">
                     </table>
                 </div>
-            
-                
+                <!-- 사용자 입력 시 추가되는 영역 -->
+
             </div>
+            <!-- 전체 리스트 -->
 
-
-
-        </div>
+        </div> <!-- .innerPage -->
         <!-- 내부 페이지 -->
 
 
-    </div>
+    </div> <!-- .outerPage -->
     <!-- 바깥 페이지 -->
 
 
