@@ -107,6 +107,7 @@
     }
         .listTable .td0 {
             width: 50px;
+            border-bottom: 1px solid gray;
         }
         
     .listTable .td1
@@ -146,7 +147,6 @@
     $(document).ready(function () {
 
         // 버튼별 ID를 다르게 부여할 index 용 변수
-        var n = 1;
 
 
         // ※ 처리할 이벤트          :  3개
@@ -177,13 +177,13 @@
             var tr = "<tr>";
 
             // td 체크박스
-            var td0 = "<td class='td0'>" + "<input type='checkbox' class='success' id='success"+n+"' /> <lable for='success'></label></td>";
+            var td0 = "<td class='td0'>" + "<input type='checkbox' class='success' id='success' /> <lable for='success'></label></td>";
 
             // td todo 입력값
             var td1 = "<td class='td1'><span class='todoList' > &nbsp;" + td + "</span></td>";
 
             // td 삭제버튼
-            var td2 = "<td class='td2'><button type='button' class='close' id='closeBtn" + n + "' style='font-size: 15pt; background:none; border:none;'>"
+            var td2 = "<td class='td2'><button type='button' class='close' id='closeBtn' style='font-size: 15pt; background:none; border:none;'>"
                     + "<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='red' class='bi bi-trash3-fill' viewBox='0 0 16 16'><path d = 'M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z'/></svg >"
                     + "</button> &nbsp;</td>";
 
@@ -192,16 +192,27 @@
             
             $("#listTable").append(tr);
             $("#listTable > tr:even").css("background", "white");
-            n++;
+            $("#listTable > tr:odd").css("background", "azure");
+
+            // 입력한 textBox 초기화
+            textBox.val("");
         });
 
         // 2. delete 버튼 클릭 시 : 테이블 마지막 1행씩 삭제
         $(document).on("click", ".close", function () {
-           $("#listTable > tr:last").remove();
+
+            // 클릭한 버튼의 가장 가까운 tr을 찾고 - >삭제
+            $(this).closest("tr").remove();
+
+            // #listTable 의 tr의 홀수행 : 흰색 / 짝수행 : azure 색 다시입혀주기
+            $("#listTable > tr:even").css("background", "white");
+            $("#listTable > tr:odd").css("background", "azure");
         });
 
         // 3. check 박스 선택 시  : 체크박스 / 입력한내용 / 삭제버튼 --- 중 입력한내용 중간에 삭선 긋기(완료표시)
         $(document).on("change", ".success", function () {
+
+            // id로 찾아보기
 
             // 해당 체크박스에서 가장 가까운 <td> 태그를 찾아서
             var cell = $(this).closest("td");
@@ -224,14 +235,12 @@
     })
 </script>
 <!-- 스크립트 단 -->
-
 </head>
 
 <body>
 
     <!-- 바깥 페이지 -->
     <div class="outerPage">
-
 
         <!-- 내부 페이지 -->
         <div class="innerPage">
@@ -243,7 +252,6 @@
                 </h1>
 
             </div>
-
 
             <!-- 전체 리스트 -->
             <div class="lists">
@@ -266,8 +274,6 @@
 
 
 
-
-
                 <!-- 사용자 입력 시 추가되는 영역 -->
                 <div class="todoForm">
                     <table class="listTable" id="listTable">
@@ -281,11 +287,8 @@
         </div> <!-- .innerPage -->
         <!-- 내부 페이지 -->
 
-
     </div> <!-- .outerPage -->
     <!-- 바깥 페이지 -->
-
-
 
 
 </body>
